@@ -12,17 +12,25 @@
     virtualenv: "{{ ha_conf_dir }}"
   with_items:
     - colorlog
-
+  
 - name: install defined version of Home Assistant
   pip:
     name: homeassistant
     version: "{{ ha_version }}"
     virtualenv: "{{ ha_conf_dir }}"
   when: ha_version is defined
-
+  
 - name: install latest version of Home Assistant
   pip:
     name: homeassistant
     extra_args: "--upgrade"
     virtualenv: "{{ ha_conf_dir }}"
   when: ha_version is undefined
+
+- name: change file ownership, group and permissions for Home Assistant
+  ansible.builtin.file:
+    path: "{{ ha_conf_dir }}"
+    owner: "{{ ha_user }}"
+    group: "{{ ha_user }}"
+    recurse: yes
+  
