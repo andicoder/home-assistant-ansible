@@ -11,6 +11,8 @@
     comment: "Home Assistant"
     system: yes
     shell: "/sbin/nologin"
+    groups:
+      - dialout
 
 - name: create directory
   file:
