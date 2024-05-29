@@ -13,3 +13,7 @@ ha_user: ha
 ha_port: 8123
 # modify motd
 motd_modification: false
+# python version
+ha_python_version: "3.12.3"
+# num jobs to build python
+ha_python_build_jobs: 1
